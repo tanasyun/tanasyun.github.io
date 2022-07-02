@@ -3,10 +3,43 @@
   <body bgcolor="#10100E" text="#cccccc">
     <p>意味はいつか乗っけときます</p>
     <h1>A-Last Letterの模範回答(python)</h1>
-    <center><img src="A-last letter.py"></center>
+    <h1>a = int(input())
+          b = input()
+ 
+          d = list(b)
+          print(b[a-1])</h1>
     <h1>白昼夢の模範解答(python)</h1>
-    <center><img src="ABC049C.py"></center>
+    <h1>a = input()
+          a = a.replace("eraser","").replace("erase","").replace("dreamer","").replace("dream","")
+          if len(a)==0:
+          print("YES")
+          else:
+          print("NO")</h1>
     <h1>Coinsの模範解答(python)</h1>
-    <center><img src="ABC087B.py"></center>
+    <h1>kaisuu500 = int(input())
+          kaisuu100 = int(input())
+          kaisuu50 = int(input())
+          kingaku = int(input())
+          count = 0
+
+          for a in range(kaisuu500+1):
+          for b in range(kaisuu100+1):
+          for c in range(kaisuu50+1):
+            if 500 * a + 100 * b + 50 * c ==kingaku:
+                count += 1
+          print(count)</h1>
     <h1>Card Game for Twoの模範解答(python)</h1>
-    <center><img src="ABC088B.py"></center>
+    <h1>Alice = 0
+          Bob =0
+          N = int(input())
+          a = list(map(int,input().split()))
+          a = sorted(a, reverse=True)
+          for i in range(N):
+          if i % 2 == 0:
+          Alice = Alice + a[i]
+          else:
+          Bob = Bob + a[i]
+          c = Alice - Bob
+          print(c)</h1>
+  </body>
+</html>
