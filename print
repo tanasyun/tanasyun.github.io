@@ -1,0 +1,72 @@
+import pyautogui as pa
+import time
+from PIL import Image
+import sys
+import pyocr
+import pyocr.builders
+from gtts import gTTS
+
+
+def moji(a):
+    tools = pyocr.get_avaliable_tools()
+    tool = tools[0]
+    
+    langs = tool.get_avaliable_languages()
+    lang = langs[0] 
+    #txtに変換した文字列を代入する
+    txt = tool.image_to_string(
+        Image.open(a + '.png'),
+        lang="eng",
+        builder=pyocr.builders.TextBuilder(tesseract_layout=6)
+    )
+    Text = list(txt)#文字列を配列に変換
+    count = len(Text)
+    i = 0
+    while True:#寿司打では、小文字のアルファベットまたは、-（伸ばし棒）しか出てこなかったのでそれ以外の文字が出てきたら削除をする
+        if i>= count:
+            break
+        if Text[i] < 'a' or Text[i] > 'z':
+            if Text[i] != '-':
+                del Text[i]
+                count -= 1
+            else:
+                i += 1
+        else:
+            i += 1
+
+    txt = str(''.join(Text))#上で配列にした文字列をもとに戻す
+    return txt
+
+def main():
+    start = time.time()
+    pa.mouseDown(x=765, y=588, button='left')
+    pa.mouseUp()
+    pa.typewrite(" ", interval=0.0)
+    nowtime = time.time()
+    while True:
+        if time.time() - nowtime > 1.5:
+            break
+    i = 0
+    while True:
+        if time.time() - nowtime > 300:
+            break
+        print(i)
+        img = pa.screenshot(
+            imageFilename="screenshot" + str(i) + ".png",  #スクショの保存先のファイル名
+            region=(797, 588, 275, 30)#撮影範囲（撮影をする座標）（x,y,width,height）
+        )
+        string = moji.moji("screenshot" + str(i))
+        pa.typewrite(string, interval=0.0)
+        print(string)
+        nowtime1 = time.time()
+        while True:
+            if time.time() - nowtime1 > 0.25:
+                break
+        i += 1
+
+    myText = "舟橋雄"
+    language = 'ja'
+    output = gTTS(text=mytext, lang=language)
+    output.save("output.mp3")
+if __name__ == "__main__":
+    main()
