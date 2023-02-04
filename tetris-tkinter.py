@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 import tkinter as tk
 import random
+from tkinter import *
+from PIL import Image, ImageTk
 
 from playsound import playsound
 
@@ -362,6 +364,17 @@ class TetrisGame():
         if self.field.judge_game_over(self.block):
             self.end_func()
             print("GAMEOVER")
+            imagel = Image.open("barusu.png")
+            test = ImageTk.PhotoImage(imagel)
+
+            labell = tk.Label(image=test)
+            labell.image = test
+
+            labell.place(x=0, y=10)
+            #test_open = open('/home/student/Documents/tanakasyunsuke/barusuAA1.txt','r')
+            #AA1 = test_open.read()
+            #AA1_display = tk.Label(text = AA1)
+            #AA1_display.place(x=0,y=0)
             playsound("barusu.wav")
             playsound("megamega.mp3")
 
